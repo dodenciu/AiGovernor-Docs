@@ -1,7 +1,8 @@
+
 tenant {
 	id int pk
 	name varchar
-	friendly_url varchar
+	subdomain varchar
 	active bool
 	terminated bool
 	created_on_utc datetime
@@ -10,11 +11,15 @@ tenant {
 	license_id int > license.id
 	ai_proxy_id int >* ai_proxy.id
 	tenant_contact_id int >* tenant_contact.id
+	storage_id int > storage.id
+	payment_id int >* payment.id
 }
 
 license {
 	id int pk
 	generated_on_utc datetime
+	last_updated_on_utc datetime
+	expires_on_utc datetime
 	license_type datetime
 	feature_id varchar >* feature.id
 }
@@ -23,6 +28,13 @@ feature {
 	id int pk
 	name varchar
 	description varchar
+	active bool
+}
+
+storage {
+    id int pk
+    size_in_mb int 
+    storage_type varchar
 }
 
 ai_proxy {
@@ -32,8 +44,15 @@ ai_proxy {
 	active bool
 }
 
+payment {
+    id int pk
+    number_of_payments int
+    
+}
+
 tenant_contact {
 	id int pk
 	email varchar
 	address varchar
+	company varchar
 }
