@@ -1,0 +1,39 @@
+tenant {
+	id int pk
+	name varchar
+	friendly_url varchar
+	active bool
+	terminated bool
+	created_on_utc datetime
+	activated_on_utc datetime
+	feature_id int >* feature.id
+	license_id int > license.id
+	ai_proxy_id int >* ai_proxy.id
+	tenant_contact_id int >* tenant_contact.id
+}
+
+license {
+	id int pk
+	generated_on_utc datetime
+	license_type datetime
+	feature_id varchar >* feature.id
+}
+
+feature {
+	id int pk
+	name varchar
+	description varchar
+}
+
+ai_proxy {
+	id int pk
+	name varchar
+	ai_type varchar
+	active bool
+}
+
+tenant_contact {
+	id int pk
+	email varchar
+	address varchar
+}
