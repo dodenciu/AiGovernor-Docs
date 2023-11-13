@@ -1,58 +1,64 @@
-
 tenant {
-	id int pk
+	id uniqueidentifier pk
 	name varchar
 	subdomain varchar
-	active bool
-	terminated bool
+	tenant_status enum
 	created_on_utc datetime
-	activated_on_utc datetime
-	feature_id int >* feature.id
-	license_id int > license.id
-	ai_proxy_id int >* ai_proxy.id
+	activated_on_utc datetime null
+	license_id int >* license.id
 	tenant_contact_id int >* tenant_contact.id
-	storage_id int > storage.id
-	payment_id int >* payment.id
 }
 
 license {
-	id int pk
+	id uniqueidentifier pk
+	tenant_id uniqueidentifier > tenant.id
+	license_template_id uniqueidentifier > license_template.id
+	license_status enum
 	generated_on_utc datetime
-	last_updated_on_utc datetime
 	expires_on_utc datetime
-	license_type datetime
-	feature_id varchar >* feature.id
 }
 
 feature {
-	id int pk
+	id uniqueidentifier pk
+	capabilities_id uniqueidentifier > capabilities.id
 	name varchar
 	description varchar
-	active bool
+	feature_status enum
 }
 
 storage {
-    id int pk
-    size_in_mb int 
-    storage_type varchar
+	id uniqueidentifier pk
+	size_in_mb int
+	storage_type enum
 }
 
 ai_proxy {
-	id int pk
+	id uniqueidentifier pk
 	name varchar
-	ai_type varchar
-	active bool
-}
-
-payment {
-    id int pk
-    number_of_payments int
-    
+	description varchar
+	ai_type enum
+	ai_proxy_status enum
 }
 
 tenant_contact {
-	id int pk
+	id uniqueidentifier pk
 	email varchar
 	address varchar
 	company varchar
+}
+
+license_template {
+	id uniqueidentifier pk
+	feature_id uniqueidentifier >* feature.id
+	name varchar
+	description varchar
+	price_in_usd int
+	duration_months int
+}
+
+capabilities {
+	id uniqueidentifier pk
+	name varchar
+	storage_id uniqueidentifier > storage.id
+	ai_proxy_id uniqueidentifier > ai_proxy.id
 }
