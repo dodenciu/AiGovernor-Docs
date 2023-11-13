@@ -105,7 +105,10 @@ The administrator is logged in.
 3. The Administrator selects a license to assign to the tenant.
 4. The Administrator confirms the license assignment.
 5. The system initiates infrastructure creation for the tenant asynchronously.
-6. The tenant's status is changed to "Scheduled".
+6. The system triggers the creation of an application in the identity provider.
+7. The application in the identity provider is configured to allow user registration.
+8. The application generates access tokens based on the features of the assigned license.
+7. The tenant's status is changed to "Scheduled".
 
 **Postconditions:**
 - The selected license is assigned to the tenant.
