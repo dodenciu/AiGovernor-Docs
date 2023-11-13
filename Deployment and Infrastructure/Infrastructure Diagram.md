@@ -33,6 +33,15 @@ subgraph Lambda Functions
   L[Lambda Function 2]
 end
 
+subgraph Web Servers
+  M[Web Server 1]
+  N[Web Server 2]
+end
+
+subgraph AWS Cloudfront
+  O[AWS Cloudfront CDN]
+end
+
 A --> D
 B --> D
 C --> D
@@ -46,3 +55,7 @@ A --> I
 B --> J
 K --> D
 L --> D
+M --> O
+N --> O
+O --> M
+O --> N
