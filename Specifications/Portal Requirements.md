@@ -1,9 +1,9 @@
-**Project Specifications Document**  
+**Project Requirements Document**  
 *Software Project: AiGovernor-Portal*
 
 **1. Introduction**
 
-AiGovernor Portal is a web-based application, part of the AiGovernor product, that empowers administrators to manage tenants, licenses, and features. This document defines the specifications and requirements for the development of this application.
+AiGovernor Portal is a web-based application, part of the AiGovernor product, that empowers administrators to manage tenants, licenses, and features. This document defines the requirements and technical specifications for the development of this application.
 
 **2. Project Objectives**
 
